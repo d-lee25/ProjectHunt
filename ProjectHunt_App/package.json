@@ -1,0 +1,20 @@
+{
+  "name": "projecthunt_app",
+  "version": "1.0.0",
+  "description": "The goal of this project is to develop a website for outdoor enthusiasts to come together and share stories, recipes, and have  access to basics tools to prepare for the next adventure.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server",
+    "test": "echo \"Error: no test specified\" && exit 1,"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-lee25/ProjectHunt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "prettier": "^2.0.5"
+  }
+}

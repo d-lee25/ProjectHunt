@@ -1,0 +1,13 @@
+.title {
+  background-color: #ff4500;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: rgb(53, 49, 49);
+  padding: 0%;
+  text-align: center;
+  display: block;
+}
+
+.sideColumn {
+  background-color: rgb(26, 51, 26);
+}
