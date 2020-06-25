@@ -14,15 +14,6 @@ class BaseConfig(object):
     DEBUG_TB_INTERCEPT_REDIRECTS = False
 
 
-class DevelopmentConfig(BaseConfig):
-    """Development configuration."""
-    DEBUG = True
-    BCRYPT_LOG_ROUNDS = 1
-    WTF_CSRF_ENABLED = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'inventory.db')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    DEBUG_TB_ENABLED = False
-
 class DevConfig(BaseConfig):
     """Development configuration."""
     DEBUG = True
@@ -39,13 +30,13 @@ class TestingConfig(BaseConfig):
     TESTING = True
     BCRYPT_LOG_ROUNDS = 1
     WTF_CSRF_ENABLED = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///'
+    SQLALCHEMY_DATABASE_URI = 
     DEBUG_TB_ENABLED = False
 
 
 class ProductionConfig(BaseConfig):
     """Production configuration."""
-    SECRET_KEY = 'ljasdfUgreKnyvZRm8R77FkkoS9ab5duf0ypmABtkWPk3ESf8DnbVVL5K84ssyUEeSA'
+    SECRET_KEY = 
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql:///inventory'
+    SQLALCHEMY_DATABASE_URI =
     DEBUG_TB_ENABLED = False
