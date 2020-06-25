@@ -19,13 +19,14 @@
 
     <div class="col-lg-4 col-sm-4">
 
-      {{ wtf.form_field(form.sku) }}
-      {{ wtf.form_field(form.description) }}
+      {{ wtf.form_field(form.itemName) }}
+      {{ wtf.form_field(form.itemModel) }}
+      {{ wtf.form_field(form.itemPrice) }}
 
       <button class="btn btn-success" data-toggle="modal" data-target="#myOutput" type="submit">Create Component</button>
-      
+
     </div>
-  
+
 <!-- Modal -->
   <div class="modal fade" id="myOutput" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -36,7 +37,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Place Tag on Scanner</h4>
         </div>
-        
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
@@ -44,7 +45,7 @@
 
     </div>
   </div>
- 
+
  </form>
 
 {% endblock %}

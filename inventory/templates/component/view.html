@@ -28,7 +28,7 @@ $(document).ready(function() {
       },
       updateComponent : function() {
         this.$http.put('/api/components/{{result.id}}',
-          {sku:this.result.sku, description:this.result.description}).then(response => {
+          {itemName:this.result.itemName, itemModel:this.result.itemModel, itemPrice:this.result.itemPrice}).then(response => {
           this.result = response.body;
           this.edit=false;
         }, response => {
@@ -61,32 +61,39 @@ $(document).ready(function() {
     <h1>Component</h1>
   </header>
   <div id="component-app">
-    <div class="hidden" id="html-returned-sku">{{result.sku}}</div>
-    <div class="hidden" id="html-returned-description">{{result.description}}</div>
+    <div class="hidden" id="html-returned-itemName">{{result.itemName}}</div>
+    <div class="hidden" id="html-returned-itemModel">{{result.itemModel}}</div>
+      <div class="hidden" id="html-returned-itemPrice">{{result.itemPrice}}</div>
     {% raw %}
   <table class="table table-striped table-bordered table-hover">
     <tr>
-        <th>Sku</th>
-        <th>Description</th>
+        <th>Item Name</th>
+        <th>Item Model</th>
+        <th>Item Price</th>
     </tr>
         <tr>
-            
-            <td><span v-if="this.edit == false" v-model="result.sku">
-                    {{ result.sku }}
+
+            <td><span v-if="this.edit == false" v-model="result.itemName">
+                    {{ result.itemName }}
                   </span>
-                  <input v-else type="text" v-model="result.sku">
+                  <input v-else type="text" v-model="result.itemName">
             </td>
-            <td><span v-if="this.edit == false" v-model="result.description">
-                    {{result.description }}
+            <td><span v-if="this.edit == false" v-model="result.itemModel">
+                    {{result.itemModel }}
                   </span>
-                  <input v-else type="text" v-model="result.description">
+                  <input v-else type="text" v-model="result.itemModel">
+            </td>
+            <td><span v-if="this.edit == false" v-model="result.itemPrice">
+                    {{result.itemPrice}}
+                  </span>
+                  <input v-else type="text" v-model="result.itemPriceP">
             </td>
             <td>
               <a class="btn btn-default" v-if="this.edit == false" href="#" v-on:click="edit = !edit">Edit</a>
               <a class="btn btn-default" v-if="this.edit == true" href="#" v-on:click="updateComponent">Save</a>
               <a class="btn btn-default" v-if="this.edit == true" href="#" v-on:click="edit = !edit">Cancel</a>
             </td>
-            
+
         </tr>
               <tr>
         <td colspan="2">

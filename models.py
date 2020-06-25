@@ -28,7 +28,7 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=False)
-    
+
 
     def __init__(self, email, password, admin=False):
         self.email = email
@@ -54,20 +54,17 @@ class User(db.Model):
 
 class Inventory_log(db.Model):
     __tablename__ = "inventory_log"
-    
+
     id = db.Column(db.Integer, nullable=False, autoincrement=True, primary_key=True)
     item_id = db.Column(db.BigInteger, nullable=False)
-    item_name = db.Column(db.String(255), nullable=False)
-    clock_in = db.Column(db.DateTime, default=datetime.datetime.now())
+    itemName = db.Column(db.String(255), nullable=False)
+    clock_in = db.Column(db.DateTime, default=datetime.datetime.now(), nullable=False)
 
 class Component(db.Model):
     __tablename__ = "component"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    sku = db.Column(db.String(255), unique=True, nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    itemName = db.Column(db.String(255), unique=True, nullable=False)
+    itemModel = db.Column(db.String(255), nullable=False)
+    itemPrice = db.Column(db.String(255), nullable = False)
     rfid_id = db.Column(db.BigInteger, nullable=False)
-    
-
-
-    

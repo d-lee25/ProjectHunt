@@ -44,19 +44,20 @@ reader = SimpleMFRC522()
 def create_component():
     form = ComponentCreateForm()
     if form.validate_on_submit():
-        component = Component.query.filter_by(sku=form.sku.data).first()
+        component = Component.query.filter_by(itemName=form.itemName.data).first()
         if component is None:
             id, text = reader.read()
-            component = Component(sku=form.sku.data,
-                                  description=form.description.data, 
+            component = Component(itemName=form.itemName.data,
+                                  itemModel=form.itemModel.data,
+                                  itemPrice=form.itemPrice.data,
                                   rfid_id= id)
-            
+
             try:
-                reader.write(form.description.data)
+                reader.write(form.itemName.data)
                 print('tag written success')
             finally:
                 GPIO.cleanup()
-                
+
             db.session.add(component)
             db.session.commit()
             flash('New Component Added', 'success')
@@ -78,30 +79,27 @@ def view_component(component_id=None):
 @inventory_blueprint.route('/component/<int:component_id>', methods=['GET'])
 @inventory_blueprint.route('/inventory/inventory_log/', methods=['GET', 'POST'])
 @login_required
-   
-def view_log(component_id=None):    
-    component = Inventory_log.query.all()
-    if component_id:
-        component = Component.query.get_or_404(component_id)
+
+ # integreate reading function
+
+def create_log():
+    form = InventoryLogForm()
+    inventory = Inventory_log()
+        try:
+            while True:
+                print('Place Card to\nrecord attendance')
+                id, text = reader.read()
+
+                inventory = Component(itemId = itemId.data, itemName=form.itemName.data)
+                db.session.add(inventory)
+                #db.session.execute(db.session"INSERT INTO inventory_log (item_id) VALUES (%s)" (result,) )
+                db.session.commit()
+        finally:
+            GPIO.cleanup()
+
+
+def view_log():
+    inventory = Inventory_log.query.all()
         return render_template('component/view.html', result=component)
-    component = Component.query.all()
 
     return render_template('/component/view_all.html', result=component)
-
-    try:
-        while True:
-            print('Place Card to\nrecord attendance')
-            id, text = reader.read()
-
-            result = db.session.execute("Select id FROM component WHERE rfid_id =" +str(id))
-            if result:
-                print(result)
-                db.session.execute("insert into inventory_log (item_id) values (%s)", result)
-        
-      
-            #db.session.execute(db.session"INSERT INTO inventory_log (item_id) VALUES (%s)" (result,) )
-            db.session.commit()
-            
-                
-    finally:
-        GPIO.cleanup()
